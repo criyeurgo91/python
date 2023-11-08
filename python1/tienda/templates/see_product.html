@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block tittle %}
+    {{ p.name }}
+{% endblock %}
+{% block content %}
+    <h1>Detail</h1>
+    <p><b>Description:</b>  {{ p.description }}</p>
+    <p><b>Price:</b> $ {{ p.price }}</p>
+    <p><b>Stock:</b>  {{ p.stock }} unidades</p>
+    <p><b>Marca:</b>  {{ p.marca }}</p>
+    {% if p.image %}
+        <p><b>Image:</b></p>
+        <img src="{{ p.image.url }}" alt="{{ p.name }}">
+    {% else %}
+        <p>No Image Available</p>
+    {% endif %}
+    {% for c in categories %}
+        <span class="label label-info">{{ c.name }}</span>
+    {% endfor %}
+
+    {% if p.categories.all %}
+        <h2>Categories</h2>
+        {% for pc in p.categories.all %}
+            {{pc}}
+        {% endfor %}
+    {% else %}
+        <h3>Without Category</h3>
+    {% endif %}
+    <br>
+    <a href="{% url 'product_list_view'%}">Return to List</a>
+{% endblock %}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block tittle %}
+    Contact
+{% endblock %}
+{% block content %}
+{% if info_enviado %}
+<h2>la informacion suministrada es:</h2>
+{{email}}
+{{tittle}}
+{{text}}
+{%else%}
+
+<form action="" method="POST">
+{% csrf_token %}
+{{ formulario.as_p }}
+<input type="submit" value="send">
+ </form>
+{%endif%}
+{% endblock %}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block tittle %}
+    Product List
+{% endblock %}
+{% block content %}
+    <h1>Product List</h1>
+    <div>
+        <a href="{% url 'add_product_view' %}">Add product</a>
+       
+    </div>
+    <br>
+    {% for p in list %}
+        <p>
+            Name: {{ p.name }}
+            Price: {{ p.price}}
+            Stock: {{ p.stock}}
+            Marca: {{ p.marca }}
+            <img src="/media/{{ p.image }}" alt=" " width="50">
+            <div>
+                <a href="{% url 'see_product_view' id_product=p.id %}">Detail</a>
+                <a href="{% url 'edit_product_view' id_product=p.id %}">Edit product</a>
+                <a href="{% url 'delete_product_view' id_product=p.id %}">Delete</a>
+            </div>
+        </p>
+       
+        
+    {%endfor%}
+
+{% endblock %}
+    
